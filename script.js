@@ -1,23 +1,19 @@
-//your JS code he const changeBtn = document.getElementById("change_button");
-    const resetBtn = document.getElementById("Reset");
+function cells() {
+  const arr = [];
+  for (let i = 1; i <= 9; i++) arr.push(document.getElementById(String(i)));
+  return arr;
+}
 
-    changeBtn.addEventListener("click", () => {
-      // Reset all to transparent first
-      const items = document.querySelectorAll(".grid-item");
-      items.forEach(item => item.style.backgroundColor = "transparent");
+function resetAll() {
+  cells().forEach((el) => (el.style.backgroundColor = "transparent"));
+}
 
-      // Get values
-      const blockId = document.getElementById("block_id").value;
-      const color = document.getElementById("colour_id").value;
+document.getElementById("change_button").addEventListener("click", () => {
+  const id = document.getElementById("block_id").value.trim();
+  const color = document.getElementById("colour_id").value.trim();
+  resetAll();
+  const cell = document.getElementById(id);
+  if (cell && color) cell.style.backgroundColor = color;
+});
 
-      // Change specific block
-      if (blockId && color) {
-        const block = document.getElementById(blockId);
-        if (block) block.style.backgroundColor = color;
-      }
-    });
-
-    resetBtn.addEventListener("click", () => {
-      const items = document.querySelectorAll(".grid-item");
-      items.forEach(item => item.style.backgroundColor = "transparent");
-    });
+document.getElementById("reset_button").addEventListener("click", resetAll);
