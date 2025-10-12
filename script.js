@@ -1,19 +1,19 @@
-function cells() {
-  const arr = [];
-  for (let i = 1; i <= 9; i++) arr.push(document.getElementById(String(i)));
-  return arr;
-}
+  const items = () => Array.from(document.querySelectorAll('.grid-item'));
 
-function resetAll() {
-  cells().forEach((el) => (el.style.backgroundColor = "transparent"));
-}
+  document.getElementById('change_button').addEventListener('click', () => {
+    const id = String(document.getElementById('block_id').value).trim();
+    const color = document.getElementById('colour_id').value.trim();
 
-document.getElementById("change_button").addEventListener("click", () => {
-  const id = document.getElementById("block_id").value.trim();
-  const color = document.getElementById("colour_id").value.trim();
-  resetAll();
-  const cell = document.getElementById(id);
-  if (cell && color) cell.style.backgroundColor = color;
-});
+    // reset all to transparent first
+    items().forEach(el => el.style.backgroundColor = 'transparent');
 
-document.getElementById("reset_button").addEventListener("click", resetAll);
+    // then color the chosen block (if valid)
+    const cell = document.getElementById(id);
+    if (cell && color) cell.style.backgroundColor = color;
+  });
+
+  document.getElementById('Reset').addEventListener('click', () => {
+    items().forEach(el => el.style.backgroundColor = 'transparent');
+    document.getElementById('block_id').value = '';
+    document.getElementById('colour_id').value = '';
+  });
