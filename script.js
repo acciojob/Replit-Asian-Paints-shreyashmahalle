@@ -12,7 +12,7 @@
     if (cell && color) cell.style.backgroundColor = color;
   });
 
-  document.getElementById('Reset').addEventListener('click', () => {
+  document.getElementById('reset_button').addEventListener('click', () => {
     items().forEach(el => el.style.backgroundColor = 'transparent');
     document.getElementById('block_id').value = '';
     document.getElementById('colour_id').value = '';
